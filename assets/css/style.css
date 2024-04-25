@@ -12,6 +12,7 @@
 h1 {
     background: linear-gradient(to bottom, #ff0000, #ffffff);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 1rem;
     font-family: 'Jersey 10', sans-serif;
@@ -48,9 +49,7 @@ li {
     font-size: xx-large;
 }
 
-li:hover {
-    background-color: darkgreen;
-}
+
 
 h3 {
     font-size: 2rem;
@@ -60,4 +59,24 @@ h3 {
 img {
     width: 100%;
     height: auto;
+    transition: 0.5s;
+}
+
+img:hover {
+    transform: scale(1.1);
+}
+
+@media (min-width: 768px) {
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 40%;
+    }
+    #pokeball {
+        width: 10rem;
+        height: auto;
+        margin-left: -18rem;
+    }
+    
 }
