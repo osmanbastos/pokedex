@@ -13,24 +13,18 @@
 </head>
 <body>
     <section class="content">
-        <h1>Welcome to My Pokedex</h1>
-        <p>Minha Pokedex</p>
-
-        <ul class="pokemons">
-            <li>Bulbasaur</li>
-            <li>Ivysaur</li>
-            <li>Venusaur</li>
-            <li>charmander</li>
-            <li>charmeleon</li>
-            <li>charizard</li>
-            <li>squirtle</li>
-            <li>wartortle</li>
-            <li>blastoise</li>
-            <li>caterpie</li>
-        </ul>
+        <h1>
+            <img src="./public/pokebola.png" alt="pokeball" id="pokeball">
+            Welcome to My Pokedex
+        </h1>
+        <ol class="pokemon-list" id="pokemonList">
+            <!-- Pokemons will be inserted here -->
+        </ol>
+        <div class="pagination">
+            <button id="prevBtn" onclick="prevPage()">Previous</button>
+            <button id="nextBtn" onclick="nextPage()">Next</button>
+        </div>
     </section>
-
-
     <!-- My Script -->
     <script src="./assets/js/script.js"></script>
 </body>
