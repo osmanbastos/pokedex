@@ -8,20 +8,35 @@ async function fetchPokemon(offset) {
     return data.results;
 }
 
+async function fetchPokemonDetails(url) {
+    const response = await fetch(url);
+    return await response.json();
+}
+
 async function renderPokemonList() {
     const pokemonList = document.getElementById('pokemonList');
     pokemonList.innerHTML = ''; // Limpa a lista antes de renderizar os novos itens
 
     const pokemons = await fetchPokemon(offset);
-
+    const pokemonDetails = await Promise.all(pokemons.map(pokemon => fetchPokemonDetails(pokemon.url)));
+    
     pokemons.forEach(async pokemon => {
         const listItem = document.createElement('li');
         listItem.textContent = pokemon.name;
-        const img = document.createElement('img')
-        img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${imageOffset}.png`;
-        imageOffset++; // Incrementa o imageOffset
-        console.log(img); // Exibe o valor de imageOffset no console
-        listItem.appendChild(img);
+        fetchPokemonDetails(pokemon.url).then(pokemonDetails => {
+            const img = document.createElement('img');
+            const pokemonId = pokemonDetails.id;
+            const pokemonAbilities = pokemonDetails.abilities.map(ability => ability.ability.name).join(', ');
+
+            img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`;
+            img.alt = pokemon.name;
+            listItem.appendChild(img);
+            listItem.appendChild(pokemonAbilities);
+        })
+        //const img = document.createElement('img')
+        //img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${imageOffset++}.png`;// Incrementa o imageOffset
+        //console.log(img); // Exibe o valor de imageOffset no console
+        //listItem.appendChild(img);
         pokemonList.appendChild(listItem);
     });
 
