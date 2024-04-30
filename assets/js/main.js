@@ -18,18 +18,22 @@ async function renderPokemonList() {
     pokemonList.innerHTML = ''; // Limpa a lista antes de renderizar os novos itens
 
     const pokemons = await fetchPokemon(offset);
-    const pokemonDetails = await Promise.all(pokemons.map(pokemon => fetchPokemonDetails(pokemon.url)));
     
     pokemons.forEach(async pokemon => {
         const listItem = document.createElement('li');
         listItem.textContent = pokemon.name;
+        
         fetchPokemonDetails(pokemon.url).then(pokemonDetails => {
             const img = document.createElement('img');
             const pokemonId = pokemonDetails.id;
-            const pokemonAbilities = pokemonDetails.abilities.map(ability => ability.ability.name).join(', ');
-
+            console.log(pokemonId);
+            pokemonNumber = document.createElement('p');
+            pokemonNumber.textContent = `#${pokemonId}`; // Exibe o número do Pokémon
+            const pokemonAbilities = document.createElement('p');
+            pokemonAbilities.textContent = `Habilidades: ${pokemonDetails.abilities.map(ability => ability.ability.name).join(', ')}`;
             img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`;
             img.alt = pokemon.name;
+            listItem.appendChild(pokemonNumber);
             listItem.appendChild(img);
             listItem.appendChild(pokemonAbilities);
         })
@@ -38,6 +42,8 @@ async function renderPokemonList() {
         //console.log(img); // Exibe o valor de imageOffset no console
         //listItem.appendChild(img);
         pokemonList.appendChild(listItem);
+        
+
     });
 
     // Atualiza a visibilidade dos botões de navegação
