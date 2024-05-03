@@ -29,8 +29,8 @@ async function renderPokemonList() {
             console.log(pokemonId);
             pokemonNumber = document.createElement('p');
             pokemonNumber.textContent = `#${pokemonId}`; // Exibe o número do Pokémon
-            const pokemonAbilities = document.createElement('p');
-            pokemonAbilities.textContent = `Habilidades: ${pokemonDetails.abilities.map(ability => ability.ability.name).join(', ')}`;
+            const pokemonAbilities = document.createElement('span');
+            pokemonAbilities.textContent = `${pokemonDetails.abilities.map(ability => ability.ability.name).join(', ')}`;
             img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`;
             img.alt = pokemon.name;
             listItem.appendChild(pokemonNumber);

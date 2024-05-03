@@ -66,6 +66,20 @@ img:hover {
     transform: scale(1.1);
 }
 
+li p {
+    display: flex;
+    font-size: 1.5rem;
+    position: relative;
+    flex-direction: row-reverse;
+}
+
+span {
+    font-weight: bold;
+    margin-right: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
 @media (min-width: 1200px) {
     .content {
         display: flex;
