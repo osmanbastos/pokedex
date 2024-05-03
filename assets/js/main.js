@@ -29,13 +29,13 @@ async function renderPokemonList() {
             console.log(pokemonId);
             pokemonNumber = document.createElement('p');
             pokemonNumber.textContent = `#${pokemonId}`; // Exibe o número do Pokémon
-            const pokemonAbilities = document.createElement('span');
-            pokemonAbilities.textContent = `${pokemonDetails.abilities.map(ability => ability.ability.name).join(', ')}`;
+            const pokemonTypes = document.createElement('ol');
+            pokemonTypes.textContent = `${pokemonDetails.types.map(type => type.type.name)}`; // Exibe os tipos do Pokémon
             img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`;
             img.alt = pokemon.name;
             listItem.appendChild(pokemonNumber);
             listItem.appendChild(img);
-            listItem.appendChild(pokemonAbilities);
+            listItem.appendChild(pokemonTypes);
         })
         //const img = document.createElement('img')
         //img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${imageOffset++}.png`;// Incrementa o imageOffset
