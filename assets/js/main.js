@@ -1,12 +1,21 @@
 let offset = 0;
-const limit = 12;
+let limit = 12; // Define o número de Pokemons a serem exibidos por página
+function changeLimit() {
+    const limitInput = document.getElementById('limitInput');
+    limit = parseInt(limitInput.value);
+    renderPokemonList();
+}
 let imageOffset = (offset + 1); // Declara a variável imageOffset e inicializa com o valor de offset + 1
 
 async function fetchPokemon(offset) {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`);
-    const data = await response.json();
-    return data.results;
-}
+    try {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`);
+        const data = await response.json();
+        return data.results;
+    } catch (error) {
+        alert('Erro ao tentar acessar a pokeapi', error);
+    }
+} 
 
 async function fetchPokemonDetails(url) {
     const response = await fetch(url);
@@ -21,21 +30,36 @@ async function renderPokemonList() {
     
     pokemons.forEach(async pokemon => {
         const listItem = document.createElement('li');
-        listItem.textContent = pokemon.name;
+        listItem.classList.add('pokemon');
         
         fetchPokemonDetails(pokemon.url).then(pokemonDetails => {
+            const pokemonName = document.createElement('h2');
+            pokemonName.textContent = pokemonDetails.name;
+            pokemonName.classList.add('pokemon-name');
             const img = document.createElement('img');
+            img.classList.add('pokemon-image');
             const pokemonId = pokemonDetails.id;
             console.log(pokemonId);
             pokemonNumber = document.createElement('p');
             pokemonNumber.textContent = `#${pokemonId}`; // Exibe o número do Pokémon
+            pokemonNumber.classList.add('pokemon-number');
             const pokemonTypes = document.createElement('ol');
-            pokemonTypes.textContent = `${pokemonDetails.types.map(type => type.type.name)}`; // Exibe os tipos do Pokémon
+            pokemonTypes.classList.add('types');
+            pokemonDetails.types.forEach(type => {
+                const typeItem = document.createElement('li');
+                typeItem.textContent = type.type.name;
+                pokemonTypes.appendChild(typeItem);
+                typeItem.classList.add(`type-detail`);
+            });
             img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`;
             img.alt = pokemon.name;
+            listItem.appendChild(pokemonName);
             listItem.appendChild(pokemonNumber);
-            listItem.appendChild(img);
-            listItem.appendChild(pokemonTypes);
+            const pokemonDetailsDiv = document.createElement('div');
+            pokemonDetailsDiv.classList.add('pokemon-details');
+            pokemonDetailsDiv.appendChild(pokemonTypes);
+            pokemonDetailsDiv.appendChild(img);
+            listItem.appendChild(pokemonDetailsDiv);
         })
         //const img = document.createElement('img')
         //img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${imageOffset++}.png`;// Incrementa o imageOffset

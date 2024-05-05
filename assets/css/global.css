@@ -30,15 +30,17 @@ h1 {
     margin-left: -7rem;
 }
 
-ol {
+/* The modified code is: */
+
+/* ol {
     display: grid;
     grid-template-columns: 1fr 1fr;
     list-style: none;
     padding: 0%;
     margin: 0%;
-}
+} */
 
-li {
+/* li {
     margin: 1rem;
     padding: 1rem;
     border: 1px solid #ccc;
@@ -47,50 +49,50 @@ li {
     background-color: forestgreen;
     color: white;
     font-size: xx-large;
-}
+} */
 
-
-
-h3 {
+/* h3 {
     font-size: 2rem;
     margin-bottom: 1rem;
-}
+} */
 
-img {
-    width: 100%;
-    height: auto;
+/* img {
+    max-width: 100%;
+    height: 70px;
     transition: 0.5s;
-}
+} */
 
-img:hover {
+/* img:hover {
     transform: scale(1.1);
-}
+} */
 
-li p {
+/* li p {
     display: flex;
     font-size: 1.5rem;
     position: relative;
     flex-direction: row-reverse;
-}
+} */
 
-span {
-    font-weight: bold;
-    margin-right: 1rem;
-    display: flex;
-    flex-direction: column;
-}
+/* span {
+    padding: .25rem .5rem;
+    margin: .25rem 0;
+    border-radius: 1rem;
+    background-color: #61e1ca;
+    color: #fff;
+    font-size: .625rem;
+} */
 
 @media (min-width: 1200px) {
-    .content {
+    /*.content {
         display: flex;
         flex-direction: column;
         justify-content: center;
         width: 40%;
-    }
+    }*/
     #pokeball {
-        width: 10rem;
+        width: 5rem;
         height: auto;
-        margin-left: -18rem;
+        margin-left: -15rem;
     }
     
 }
