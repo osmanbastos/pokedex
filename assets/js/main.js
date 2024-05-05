@@ -85,5 +85,45 @@ function prevPage() {
     renderPokemonList();
 }
 
+function searchPokemon () {
+    const searchInput = document.getElementById('searchInput');
+    const searchValue = searchInput.value;
+    const pokemonList = document.getElementById('pokemonList');
+    pokemonList.innerHTML = '';
+    fetchPokemonDetails(`https://pokeapi.co/api/v2/pokemon/${searchValue}`).then(pokemonDetails => {
+        const listItem = document.createElement('li');
+        listItem.classList.add('pokemon');
+        const pokemonName = document.createElement('h2');
+        pokemonName.textContent = pokemonDetails.name;
+        pokemonName.classList.add('pokemon-name');
+        const img = document.createElement('img');
+        img.classList.add('pokemon-image');
+        const pokemonId = pokemonDetails.id;
+        console.log(pokemonId);
+        pokemonNumber = document.createElement('p');
+        pokemonNumber.textContent = `#${pokemonId}`; // Exibe o número do Pokémon
+        pokemonNumber.classList.add('pokemon-number');
+        const pokemonTypes = document.createElement('ol');
+        pokemonTypes.classList.add('types');
+        pokemonDetails.types.forEach(type => {
+            const typeItem = document.createElement('li');
+            typeItem.textContent = type.type.name;
+            pokemonTypes.appendChild(typeItem);
+            typeItem.classList.add(`type-detail`);
+        });
+        img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`;
+        img.alt = pokemonDetails.name;
+        listItem.appendChild(pokemonName);
+        listItem.appendChild(pokemonNumber);
+        const pokemonDetailsDiv = document.createElement('div');
+        pokemonDetailsDiv.classList.add('pokemon-details');
+        pokemonDetailsDiv.appendChild(pokemonTypes);
+        pokemonDetailsDiv.appendChild(img);
+        listItem.appendChild(pokemonDetailsDiv);
+        pokemonList.appendChild(listItem);
+    });
+
+}
+
 // Renderiza a lista de Pokémon ao carregar a página
 window.onload = renderPokemonList;

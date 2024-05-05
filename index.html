@@ -19,7 +19,7 @@
             Welcome to My Pokedex
         </h1>
         <div class="search">
-            <input type="text" id="searchInput" placeholder="Search for a Pokemon" oninput="searchPokemon()">
+            <input type="text" id="searchInput" placeholder="Search for a Pokemon" oninput="searchInput()">
             <input type="button" value="Search" onclick="searchPokemon()">
             
         </div>
@@ -27,9 +27,11 @@
             <!-- Pokemons will be inserted here -->
         </ol>
         <div class="pagination">
-            Pokemons exibidos por página:
-            <input type="number" id="limitInput" placeholder="Limit" min="1" max="1118" value="12">
-            <button  onclick="changeLimit()">Apply</button>
+            <div class="pokemonsView">
+                Pokemons exibidos por página:
+                <input type="number" id="limitInput" placeholder="Limit" min="1" max="1118" value="12">
+                <button  onclick="changeLimit()">Apply</button>
+            </div>
             <br>
             <button id="prevBtn" onclick="prevPage()">Previous</button>
             <button id="nextBtn" onclick="nextPage()">Next</button>
