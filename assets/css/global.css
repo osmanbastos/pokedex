@@ -30,6 +30,16 @@ h1 {
     margin-left: -7rem;
 }
 
+#searchInput {
+    padding: 1rem;
+    margin: 1rem;
+    border: 1px solid #817e7e;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    width: 50%;
+}
+
 .pokemonsView {
     font-size: 1.5rem;
     font-weight: 500;

@@ -28,7 +28,7 @@
 
 .pokemon-name {
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 3.5rem;
     margin-bottom: .25rem;
 }
 
@@ -51,8 +51,8 @@
     border-radius: 1rem;
     background-color: #61e1ca;
     color: #fff;
-    font-size: 1.5rem;
-    font-weight: 300;
+    font-size: 2.1rem;
+    font-weight: 500;
 }
 
 .pokemon-image {
