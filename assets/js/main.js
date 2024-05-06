@@ -13,13 +13,17 @@ async function fetchPokemon(offset) {
         const data = await response.json();
         return data.results;
     } catch (error) {
-        alert('Erro ao tentar acessar a pokeapi', error);
+        alert('PokeApi not found', error);
     }
 } 
 
 async function fetchPokemonDetails(url) {
-    const response = await fetch(url);
-    return await response.json();
+    try {
+        const response = await fetch(url);
+        return await response.json();
+    } catch (error) {
+        alert(`Pokemon name not found, please try again.`);
+    }
 }
 
 async function renderPokemonList() {
@@ -90,6 +94,7 @@ function searchPokemon () {
     const searchValue = searchInput.value;
     const pokemonList = document.getElementById('pokemonList');
     pokemonList.innerHTML = '';
+    
     fetchPokemonDetails(`https://pokeapi.co/api/v2/pokemon/${searchValue}`).then(pokemonDetails => {
         const listItem = document.createElement('li');
         listItem.classList.add('pokemon');
@@ -121,9 +126,7 @@ function searchPokemon () {
         pokemonDetailsDiv.appendChild(img);
         listItem.appendChild(pokemonDetailsDiv);
         pokemonList.appendChild(listItem);
-    });
-
+    })
 }
-
 // Renderiza a lista de Pokémon ao carregar a página
 window.onload = renderPokemonList;
