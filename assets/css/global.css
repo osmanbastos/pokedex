@@ -1,6 +1,40 @@
 *{
     font-family: 'Roboto', sans-serif;
+    scroll-behavior: smooth;
 }
+
+header {
+    text-align: center;
+    font: Arial 10pt;
+    color: #000000;
+    border-style: double;
+    border-radius: 6px;
+    border-color: #FF0042;
+    transition: 0.5s;
+    animation: changeBackgroundColor 7s infinite;
+}
+@keyframes changeBackgroundColor {
+    0% {
+        transform: scaleX(0);
+        transform-origin: bottom right;
+    }
+    25% {
+        transform: scaleX(1.0);
+        transform-origin: bottom left; 
+    }
+    50% {
+        transform: scaleX(0);
+        transform-origin: bottom left;
+    }
+    75% {
+        transform: scaleX(1.0);
+        transform-origin: bottom left; 
+    }
+    100% {
+        transform: scaleX(0);
+        transform-origin: bottom right;
+    }
+  }
 
 .content {
     width: 100%;
