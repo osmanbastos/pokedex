@@ -19,8 +19,8 @@
             Welcome to My Pokedex
         </h1>
         <div class="search">
-            <input type="text" id="searchInput" placeholder="Search for a Pokemon name" oninput="searchInput()">
-            <input type="button" value="Search" onclick="searchPokemon()">
+            <input type="text" id="searchInput" placeholder="Search for a Pokemon name">
+            <input type="button" value="Search" onclick="handleSearchInput()">
             
         </div>
         <ol class="pokemons" id="pokemonList">
@@ -38,6 +38,9 @@
         </div>
     </section>
     <!-- My Script -->
+    <script src="./assets/js/pokemon-model.js"></script>
+    <script src="./assets/js/pokeApi.js"></script>
     <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/searchPokemon.js"></script>
 </body>
 </html>
