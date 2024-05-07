@@ -106,6 +106,9 @@ function handleSearchInput() {
     if (searchText !== '') {
         searchPokemonByName(searchText).then(results => {
             renderSearchList(results)
+            if (results.length === 0) {
+                pokemonList.innerHTML = `Pokemon name "${searchText}" not found!`
+            }
             console.log(results)
         });
     } else {
