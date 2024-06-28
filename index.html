@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.png">
     <title>My Pokedex</title>
     <!-- Normalize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -15,30 +17,32 @@
 <body>
     <section class="content">
         <h1>
-            <img src="./public/pokebola.png" alt="pokeball" id="pokeball">
+            <img src="./assets/images/pokebola.png" alt="pokeball" id="pokeball">
             Welcome to My Pokedex
         </h1>
         <div class="search">
             <input type="text" id="searchInput" placeholder="Search for a Pokemon name">
             <input type="button" value="Search" onclick="handleSearchInput()">
-            
+            <ol class="pokemons" id="pokemonList">
+                <!-- Pokemons will be inserted here -->
+            </ol>
+            <div class="pagination">
+                <div class="pokemonsView">
+                    Pokemons exibidos por página:
+                    <input type="number" id="limitInput" placeholder="Limit" min="1" max="1118" value="12">
+                    <button  onclick="changeLimit()">Apply</button>
+                </div>
+                <br>
+                <button id="prevBtn" onclick="prevPage()">Previous</button>
+                <button id="nextBtn" onclick="nextPage()">Next</button>
+            </div>    
         </div>
-        <ol class="pokemons" id="pokemonList">
-            <!-- Pokemons will be inserted here -->
-        </ol>
-        <div class="pagination">
-            <div class="pokemonsView">
-                Pokemons exibidos por página:
-                <input type="number" id="limitInput" placeholder="Limit" min="1" max="1118" value="12">
-                <button  onclick="changeLimit()">Apply</button>
-            </div>
-            <br>
-            <button id="prevBtn" onclick="prevPage()">Previous</button>
-            <button id="nextBtn" onclick="nextPage()">Next</button>
-        </div>
+        <div class="pokemonDetails" id="pokemonDetails">
+            <!-- Pokemon details will be inserted here -->
+        
     </section>
     <footer>
-        <i>Site criado por <a href="https://www.linkedin.com/in/osmanbastos" target="_blank" title="LinkedIn"><b>Osman Bastos.</b></a> para fins educacionais sobre JavaScript, HTML e CSS, não devendo ser utilizado para outros fins.</i>
+        <i>Desenvolvido por <a href="https://www.linkedin.com/in/osmanbastos" target="_blank" title="LinkedIn"><b>Osman Bastos.</b></a></i>
     </footer>
     <!-- My Script -->
     <script src="./assets/js/pokemon-model.js"></script>

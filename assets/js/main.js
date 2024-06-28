@@ -11,11 +11,12 @@ function renderSearchList(pokemons) {
     const pokemonList = document.getElementById('pokemonList');
     const newHtml = pokemons.map(convertPokemonToLi).join('');
     pokemonList.innerHTML = newHtml;
+    addEventListenersToPokemonList();
 }
 
 function convertPokemonToLi(pokemon) {
     return `
-        <li class="pokemon ${pokemon.type}">
+        <li class="pokemon ${pokemon.type}" data-number="${pokemon.number}" onclick="showPokemonDetails(${pokemon.number})">
             <h2 class="name">${pokemon.name}</h2>
             <p class="number">#${pokemon.number}</p>
 
@@ -29,6 +30,23 @@ function convertPokemonToLi(pokemon) {
             </div>
         </li>
     `;
+}
+
+function showPokemonDetails(pokemonNumber) {
+    const pokemonDetailsContainer = document.getElementById('pokemonDetails');
+    const pokemon = pokeApi.getPokemonDetailByNumber(pokemonNumber);
+
+    pokemon.then(details => {
+        const detailsHtml = `
+            <h2>${details.name}</h2>
+            <p>Number: #${details.number}</p>
+            <img src="${details.photo}" alt="${details.name}">
+            <p>Types: ${details.types.join(', ')}</p>
+        `;
+        pokemonDetailsContainer.innerHTML = detailsHtml;
+        pokemonDetailsContainer.style.display = 'block'; // Exibir o contêiner de detalhes
+        searchContainer.style.display = 'none'; // Ocultar o contêiner de pesquisa
+    });
 }
 
 function changeLimit() {
@@ -46,6 +64,7 @@ function renderPokemonList() {
     pokeApi.getPokemons(offset, limit).then((pokemons = []) => {
         const newHtml = pokemons.map(convertPokemonToLi).join('');
         pokemonList.innerHTML = newHtml;
+        addEventListenersToPokemonList();
     });
 }
 
@@ -91,7 +110,7 @@ function handleSearchInput() {
     if (searchText !== '') {
         searchPokemonByName(searchText).then(results => {
             renderPokemonList(results)
-            console.log(results)
+            addEventListenersToPokemonList();
         });
     } else {
         window.onload = renderPokemonList();
@@ -106,7 +125,7 @@ function handleSearchInput() {
     if (searchText !== '') {
         searchPokemonByName(searchText).then(results => {
             renderSearchList(results)
-            console.log(results)
+            addEventListenersToPokemonList();
         });
     } else {
         window.onload = renderPokemonList();
@@ -118,3 +137,13 @@ document.getElementById('searchInput').addEventListener('keypress', function(eve
         handleSearchInput();
     }
 });
+
+function addEventListenersToPokemonList() {
+    const pokemons = document.querySelectorAll('.pokemon');
+    pokemons.forEach(pokemon => {
+        pokemon.addEventListener('click', () => {
+            const number = pokemon.getAttribute('data-number');
+            showPokemonDetails(number);
+        });
+    });
+}

@@ -85,6 +85,7 @@ button {
 footer {
     align-items: center;
     text-align: center;
+    font-size: 1.5rem;
 }
 
 @media (min-width: 1200px) {
@@ -100,4 +101,17 @@ footer {
         margin-left: -15rem;
     }
     
+}
+
+.pokemon-details {
+    display: none; /* Oculto por padrão */
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.pokemon-details img {
+    max-width: 100%;
 }
